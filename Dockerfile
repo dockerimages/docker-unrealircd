@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
+ADD unreal.conf /
 RUN echo 'APT::Install-Recommends "0"; \n\
 APT::Get::Assume-Yes "true"; \n\
 APT::Get::force-yes "true"; \n\
