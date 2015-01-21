@@ -11,4 +11,4 @@ APT::Install-Suggests "0";' > /etc/apt/apt.conf.d/01buildconfig \
  && apt-get update \
  && apt-get upgrade \
  && apt-get install wget build-essential curl
-RUN deploy-unreal.sh
+RUN deploy-unrealirc.sh
