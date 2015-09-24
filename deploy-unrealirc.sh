@@ -1,8 +1,5 @@
 #!/bin/bash
-UNREAL_VERSION="3.2.10.5"
-ANOPE_VERSION="2.0.2"
-MOTD="Message of the Day"
-RULES=""
+source /config
 
 wget http://www.unrealircd.com/downloads/Unreal$VERSION.tar.gz
 tar -zxvf Unreal$VERSION.tar.gz
