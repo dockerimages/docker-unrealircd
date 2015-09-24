@@ -5,6 +5,6 @@ ADD unreal.conf /
 ADD deploy-unrealirc.sh /
 RUN chmod +x /deploy-unrealirc.sh
 RUN apt-get update \
- && apt-get upgrade \
+ && apt-get upgrade -y \
  && apt-get install wget build-essential curl
 RUN deploy-unrealirc.sh
