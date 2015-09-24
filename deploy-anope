@@ -7,8 +7,9 @@ wget -O anope-$ANOPE_VERSION-source.tar.gz http://sourceforge.net/projects/anope
 # wget http://sourceforge.net/projects/anope/files/anope-stable/Anope%201.8.8/anope-1.8.8.tar.gz/download
 tar -zxvf anope-$ANOPE_VERSION-source.tar.gz
 cd anope-$ANOPE_VERSION-source
-./Config
+/home/unreal/anope-make.expect
 make
+make install
 
 
 
