@@ -9,7 +9,6 @@ RUN mkdir -p /home/unreal
 RUN chown unreal:unreal /home/unreal
 USER unreal
 ENV HOME /home/unreal
-# RUN mkdir -p /home/unreal
 WORKDIR /home/unreal
 ADD unreal.conf /home/unreal/unreal.conf
 ADD deploy-unrealirc.sh /usr/bin/deploy-unrealirc
