@@ -6,6 +6,6 @@ tar -zxvf Unreal$UNREAL_VERSION.tar.gz
 cd Unreal$UNREAL_VERSION
 ./Config
 make
-cp /unreal.conf /home/unreal/Unreal$UNREAL_VERSION/unrealircd.conf
+cp /home/unreal/unreal.conf /home/unreal/Unreal$UNREAL_VERSION/unrealircd.conf
 echo $MOTD > ircd.motd
 echo $RULES > ircd.rules
