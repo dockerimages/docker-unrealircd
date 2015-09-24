@@ -9,13 +9,15 @@ USER unreal
 ENV HOME /home/unreal
 # RUN mkdir -p /home/unreal
 WORKDIR /home/unreal
-ADD unreal.conf /
-ADD deploy-unrealirc.sh /
+ADD unreal.conf /home/unreal/unreal.conf
+ADD deploy-unrealirc.sh /usr/bin/deploy-unrealirc
+ADD config /home/unreal/config
 COPY deploy-anope /usr/bin/deploy-anope
-ADD config /
-RUN chmod +x /deploy-unrealirc.sh
+USER root
+RUN chmod +x /usr/bin/deploy-unrealirc
 RUN chmod +x /usr/bin/deploy-anope
-RUN /deploy-unrealirc.sh
+USER unreal
+RUN deploy-unrealirc
 WORKDIR /home/unreal
 RUN deploy-anope
 CMD /bin/bash -c source /config; /tmp/Unreal$UNREAL_VERSION/unreal start
