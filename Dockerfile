@@ -19,8 +19,6 @@ USER root
 RUN chmod +x /usr/bin/deploy-unrealirc
 RUN chmod +x /usr/bin/deploy-anope
 USER unreal
-RUN id
-RUN ls -lha /home
 RUN deploy-unrealirc
 WORKDIR /home/unreal
 RUN deploy-anope
