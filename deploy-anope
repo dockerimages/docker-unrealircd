@@ -12,7 +12,7 @@ make
 
 /usr/bin/expect 'spawn make install \n expect "In what directory should Anope be installed?" \n send "/home/unreal/Unreal$UNREAL_VERSION/services\r"'
 
-cp example.conf services.conf
+cp /home/unreal/Unreal$UNREAL_VERSION/services/example.conf /home/unreal/Unreal$UNREAL_VERSION/services/services.conf
 #Make a edit for unrealircd linking
 #Run Anope:
 #./services
