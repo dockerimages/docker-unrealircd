@@ -14,6 +14,7 @@ WORKDIR /home/unreal
 ADD unreal.conf /home/unreal/unreal.conf
 ADD deploy-unrealirc.sh /usr/bin/deploy-unrealirc
 ADD config /home/unreal/config
+ADD anope-make.expect /home/unreal/anope-make.expect
 COPY deploy-anope /usr/bin/deploy-anope
 USER root
 RUN chmod +x /usr/bin/deploy-unrealirc
