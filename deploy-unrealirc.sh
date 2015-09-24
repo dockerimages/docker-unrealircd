@@ -1,5 +1,5 @@
 #!/bin/bash
-source /config
+source /home/unreal/config
 ## Install UnrealIRCD
 wget http://www.unrealircd.com/downloads/Unreal$UNREAL_VERSION.tar.gz
 tar -zxvf Unreal$UNREAL_VERSION.tar.gz
