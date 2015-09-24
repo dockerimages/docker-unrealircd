@@ -3,7 +3,7 @@ ENV LC_ALL C
 RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install -y \
- wget build-essential curl
+ wget build-essential curl cmake
 RUN groupadd -r unreal && useradd -r -g unreal unreal
 RUN mkdir -p /home/unreal
 RUN chown unreal:unreal /home/unreal
