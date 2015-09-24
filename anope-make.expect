@@ -1,0 +1,7 @@
+#!/usr/bin/expect 
+spawn make install
+expect "In what directory should Anope be installed?" 
+send "/home/unreal/Unreal$UNREAL_VERSION/services\r"
+
+# done
+expect eof
