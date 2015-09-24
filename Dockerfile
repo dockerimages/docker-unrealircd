@@ -11,7 +11,11 @@ ENV HOME /home/unreal
 WORKDIR /home/unreal
 ADD unreal.conf /
 ADD deploy-unrealirc.sh /
+ADD deploy-anope /usr/bin
 ADD config /
 RUN chmod +x /deploy-unrealirc.sh
+RUN chmod +x /usr/bin/deploy-anope
 RUN /deploy-unrealirc.sh
+WORKDIR /home/unreal
+RUN deploy-anope
 CMD /bin/bash -c source /config; /tmp/Unreal$UNREAL_VERSION/unreal start
