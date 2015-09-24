@@ -4,6 +4,11 @@ RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install -y \
  wget build-essential curl
+RUN groupadd -r unreal && useradd -r -g unreal unreal
+USER unreal
+ENV HOME /home/unreal
+# RUN mkdir -p /home/unreal
+WORKDIR /home/unreal
 ADD unreal.conf /
 ADD deploy-unrealirc.sh /
 ADD config /
