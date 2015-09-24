@@ -11,7 +11,7 @@ echo $MOTD > ircd.motd
 echo $RULES > ircd.rules
 /tmp/Unreal$UNREAL_VERSION/unreal start
 cd /tmp
-wget http://sourceforge.net/projects/anope/files/anope-stable/Anope%20$ANOPE_VERSION/anope-$ANOPE_VERSION-source.tar.gz/download
+wget http://sourceforge.net/projects/anope/files/anope-stable/Anope%20$ANOPE_VERSION/anope-$ANOPE_VERSION-source.tar.gz/download ./anope-$ANOPE_VERSION-source.tar.gz
 # wget http://sourceforge.net/projects/anope/files/anope-stable/Anope%201.8.8/anope-1.8.8.tar.gz/download
 tar -zxvf anope-$ANOPE_VERSION.tar.gz
 cd anope-$ANOPE_VERSION
