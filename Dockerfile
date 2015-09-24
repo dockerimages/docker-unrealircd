@@ -5,6 +5,8 @@ RUN apt-get update \
  && apt-get install -y \
  wget build-essential curl
 RUN groupadd -r unreal && useradd -r -g unreal unreal
+RUN mkdir -p /home/unreal
+RUN chown unreal:unreal /home/unreal
 USER unreal
 ENV HOME /home/unreal
 # RUN mkdir -p /home/unreal
