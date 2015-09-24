@@ -9,3 +9,4 @@ ADD deploy-unrealirc.sh /
 ADD config /
 RUN chmod +x /deploy-unrealirc.sh
 RUN /deploy-unrealirc.sh
+CMD /bin/bash -c source /config; /tmp/Unreal$UNREAL_VERSION/unreal start
