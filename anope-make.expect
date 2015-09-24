@@ -3,7 +3,7 @@ spawn ./Config
 expect "In what directory should Anope be installed?" 
 send "/home/unreal/Unreal$env(UNREAL_VERSION)/services\r"
 
-expect "does not exist.  Create it?
+expect "does not exist.  Create it?"
 send "y\r"
 
 expect "Which group should all Services data files be owned by?"
