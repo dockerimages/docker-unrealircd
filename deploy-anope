@@ -9,7 +9,9 @@ tar -zxvf anope-$ANOPE_VERSION-source.tar.gz
 cd anope-$ANOPE_VERSION-source
 ./Config
 make
-make install
+
+/usr/bin/expect 'spawn make install \n expect "In what directory should Anope be installed?" \n send "/home/unreal/Unreal$UNREAL_VERSION/services\r"'
+
 cp example.conf services.conf
 #Make a edit for unrealircd linking
 #Run Anope:
