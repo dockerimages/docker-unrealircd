@@ -8,6 +8,7 @@ wget -O anope-$ANOPE_VERSION-source.tar.gz http://sourceforge.net/projects/anope
 tar -zxvf anope-$ANOPE_VERSION-source.tar.gz
 cd anope-$ANOPE_VERSION-source
 /usr/bin/expect /home/unreal/anope-make.expect
+cd build
 make
 make install
 

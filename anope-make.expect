@@ -1,4 +1,5 @@
 #!/usr/bin/expect 
+set timeout -1
 spawn ./Config
 expect "In what directory should Anope be installed?" 
 send "/home/unreal/Unreal$env(UNREAL_VERSION)/services\r"
