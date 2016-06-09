@@ -1,5 +1,5 @@
 FROM debian:jessie
-ENV UNREAL_VERSION="4.0.2" \
+ENV UNREAL_VERSION="4.0.3" \
     ANOPE_VERSION="2.0.3" \
     TERM="vt100" \
     LC_ALL=C
