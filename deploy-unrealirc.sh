@@ -1,11 +1,15 @@
 #!/bin/bash
-source /home/unreal/config
+#source /home/unreal/config
+
 ## Install UnrealIRCD
-wget https://www.unrealircd.org/downloads/Unreal$UNREAL_VERSION.tar.gz
-tar -zxvf Unreal$UNREAL_VERSION.tar.gz
-cd Unreal$UNREAL_VERSION
+#echo $MOTD > ircd.motd
+#echo $RULES > ircd.rules
+
+wget https://www.unrealircd.org/unrealircd${UNREAL_VERSION%%.*}/unrealircd-$UNREAL_VERSION.tar.gz{,.asc}
+gpg --keyserver keys.gnupg.net --recv-keys 0xA7A21B0A108FF4A9
+gpg --verify unrealircd-$UNREAL_VERSION.tar.gz.asc unrealircd-$UNREAL_VERSION.tar.gz
+tar zxvf unrealircd-$UNREAL_VERSION.tar.gz
+cd unrealircd-$UNREAL_VERSION
 ./Config
 make
-cp /home/unreal/unreal.conf /home/unreal/Unreal$UNREAL_VERSION/unrealircd.conf
-echo $MOTD > ircd.motd
-echo $RULES > ircd.rules
+make install

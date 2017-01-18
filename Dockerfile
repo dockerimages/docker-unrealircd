@@ -1,25 +1,32 @@
-FROM ubuntu:15.10
-ENV LC_ALL C
+FROM debian:jessie
+ENV UNREAL_VERSION="4.0.3" \
+    ANOPE_VERSION="2.0.3" \
+    TERM="vt100" \
+    LC_ALL=C
 RUN apt-get update \
  && apt-get upgrade -y \
- && apt-get install -y \
- wget build-essential curl cmake file expect
-RUN groupadd -r unreal && useradd -r -g unreal unreal
-RUN mkdir -p /home/unreal
-RUN chown unreal:unreal /home/unreal
-USER unreal
-ENV HOME /home/unreal
-WORKDIR /home/unreal
-ADD unreal.conf /home/unreal/unreal.conf
-ADD deploy-unrealirc.sh /usr/bin/deploy-unrealirc
-ADD config /home/unreal/config
-ADD anope-make.expect /home/unreal/anope-make.expect
-COPY deploy-anope /usr/bin/deploy-anope
+ && apt-get install -y --no-install-recommends \
+    ca-certificates wget build-essential curl cmake file expect libssl-dev exim4 \
+    supervisor vim \
+ && rm -rf /var/lib/apt/lists/* \
+ && mkdir -p /var/log/supervisor \
+ && groupadd -r ircd && useradd -r -m -g ircd ircd \
+ && sed -i "/^dc_eximconfig_configtype=/ s/'local'/'internet'/" /etc/exim4/update-exim4.conf.conf \
+ && sed -i '/\[supervisord\]/a nodaemon=true' /etc/supervisor/supervisord.conf
+
+COPY ircd_ssl.py /home/ircd/ircd_ssl.py
+COPY deploy-unrealirc.sh /home/ircd/deploy-unrealirc.sh
+COPY deploy-anope.sh /home/ircd/deploy-anope.sh
+COPY anope-make.expect /home/ircd/anope-make.expect
+
+USER ircd
+WORKDIR /home/ircd
+ENV HOME /home/ircd
+RUN /home/ircd/deploy-unrealirc.sh
+RUN /home/ircd/deploy-anope.sh
+
 USER root
-RUN chmod +x /usr/bin/deploy-unrealirc
-RUN chmod +x /usr/bin/deploy-anope
-USER unreal
-RUN deploy-unrealirc
-WORKDIR /home/unreal
-RUN deploy-anope
-CMD /bin/bash -c source /config; /tmp/Unreal$UNREAL_VERSION/unreal start
+COPY supervisor_services.conf /etc/supervisor/conf.d/services.conf
+COPY unrealircd-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/bin/supervisord"]
