@@ -14,14 +14,16 @@ RUN apt-get update \
  && sed -i "/^dc_eximconfig_configtype=/ s/'local'/'internet'/" /etc/exim4/update-exim4.conf.conf \
  && sed -i '/\[supervisord\]/a nodaemon=true' /etc/supervisor/supervisord.conf
 
-COPY ircd_ssl.py /home/ircd/ircd_ssl.py
-COPY deploy-unrealirc.sh /home/ircd/deploy-unrealirc.sh
-COPY deploy-anope.sh /home/ircd/deploy-anope.sh
-COPY anope-make.expect /home/ircd/anope-make.expect
+COPY --chown=ircd:ircd ircd_ssl.py /home/ircd/ircd_ssl.py
+COPY --chown=ircd:ircd deploy-unrealirc.sh /home/ircd/deploy-unrealirc.sh
+COPY --chown=ircd:ircd deploy-anope.sh /home/ircd/deploy-anope.sh
+COPY --chown=ircd:ircd anope-make.expect /home/ircd/anope-make.expect
 
 USER ircd
 WORKDIR /home/ircd
 ENV HOME /home/ircd
+RUN chmod +x /home/ircd/deploy-unrealirc.sh
+RUN chmod +x /home/ircd/deploy-anope.sh
 RUN /home/ircd/deploy-unrealirc.sh
 RUN /home/ircd/deploy-anope.sh
 
